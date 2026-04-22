@@ -347,4 +347,4 @@ weight = 0.85
 
 ---
 
-**Academic City University College |  April 2026**
+**Academic City University |  April 2026**
