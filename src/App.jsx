@@ -391,7 +391,7 @@ function TypingDots() {
     <div style={{ display: "flex", gap: 5, padding: "14px 16px", alignItems: "center" }}>
       {[0, 1, 2].map(i => (
         <div key={i} style={{
-          width: 8, height: 8, borderRadius: "50%", background: "#4ade80",
+          width: 8, height: 8, borderRadius: "50%", background: "#ef4444",
           animation: "bounce 1.2s infinite", animationDelay: `${i * 0.2}s`
         }} />
       ))}
@@ -414,14 +414,18 @@ function ScoreBadge({ label, value, color }) {
 function ChunkPanel({ chunks, expanded, onToggle }) {
   return (
     <div style={{
-      background: "rgba(10,18,40,0.95)",
-      border: "1px solid rgba(74,222,128,0.18)",
-      borderRadius: 10, marginTop: 8, overflow: "hidden"
+      background: "linear-gradient(135deg, rgba(255,255,255,0.98), rgba(249,250,251,0.95))",
+      border: "2px solid rgba(239,68,68,0.2)",
+      borderRadius: 16, marginTop: 10, overflow: "hidden",
+      boxShadow: "0 8px 24px rgba(239,68,68,0.12), 0 2px 8px rgba(0,0,0,0.08)",
+      backdropFilter: "blur(12px)"
     }}>
       <button onClick={onToggle} style={{
-        width: "100%", padding: "9px 14px", background: "none", border: "none",
-        color: "#4ade80", cursor: "pointer", display: "flex", justifyContent: "space-between",
-        alignItems: "center", fontSize: 11, fontFamily: "monospace"
+        width: "100%", padding: "12px 16px", background: "none", border: "none",
+        color: "#ef4444", cursor: "pointer", display: "flex", justifyContent: "space-between",
+        alignItems: "center", fontSize: 12, fontFamily: "monospace",
+        fontWeight: 500, transition: "all 0.3s ease",
+        background: "linear-gradient(90deg, rgba(239,68,68,0.02), rgba(239,68,68,0.05), rgba(239,68,68,0.02))"
       }}>
         <span>📚 {chunks.length} retrieved chunks · hybrid search</span>
         <span style={{ fontSize: 10 }}>{expanded ? "▲ hide" : "▼ show"}</span>
@@ -430,19 +434,25 @@ function ChunkPanel({ chunks, expanded, onToggle }) {
         <div style={{ padding: "4px 14px 14px" }}>
           {chunks.map((r, i) => (
             <div key={i} style={{
-              marginBottom: 10, padding: 10,
-              background: "rgba(74,222,128,0.04)",
-              borderRadius: 8, borderLeft: "3px solid #4ade80"
+              marginBottom: 12, padding: 12,
+              background: "linear-gradient(135deg, rgba(239,68,68,0.03), rgba(239,68,68,0.08))",
+              borderRadius: 12, borderLeft: "4px solid #ef4444",
+              boxShadow: "0 2px 8px rgba(239,68,68,0.08)",
+              transition: "all 0.3s ease"
             }}>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 6 }}>
-                <span style={{ color: "#4ade80", fontSize: 11, fontFamily: "monospace", flex: 1 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}>
+                <span style={{
+                  color: "#ef4444", fontSize: 12, fontFamily: "monospace",
+                  flex: 1, fontWeight: 500, background: "rgba(239,68,68,0.1)",
+                  padding: "4px 8px", borderRadius: 6
+                }}>
                   {r.doc.id} — {r.doc.source}
                 </span>
                 <ScoreBadge label="vec" value={r.vectorScore || r.score || 0} color="#a78bfa" />
                 <ScoreBadge label="kw" value={r.keywordScore || 0} color="#fbbf24" />
-                <ScoreBadge label="hybrid" value={r.hybridScore || r.score || 0} color="#4ade80" />
+                <ScoreBadge label="hybrid" value={r.hybridScore || r.score || 0} color="#ef4444" />
               </div>
-              <p style={{ color: "#94a3b8", fontSize: 12, margin: 0, lineHeight: 1.6 }}>
+              <p style={{ color: "#6b7280", fontSize: 12, margin: 0, lineHeight: 1.6 }}>
                 {r.doc.text.slice(0, 220)}…
               </p>
             </div>
@@ -463,13 +473,13 @@ function ApiKeyBanner({ onSave }) {
       <p style={{ color: "#fbbf24", fontSize: 13, margin: "0 0 10px", fontFamily: "monospace" }}>
         ⚠️ No Groq API key found in <code>.env</code>
       </p>
-      <p style={{ color: "#94a3b8", fontSize: 12, margin: "0 0 10px" }}>
+      <p style={{ color: "#6b7280", fontSize: 12, margin: "0 0 10px" }}>
         Get a <strong style={{ color: "#fbbf24" }}>FREE</strong> key at{" "}
         <a href="https://console.groq.com" target="_blank" rel="noreferrer"
-          style={{ color: "#4ade80" }}>console.groq.com</a>{" "}
+          style={{ color: "#ef4444" }}>console.groq.com</a>{" "}
         → API Keys → Create Key. Then paste it in your <code>.env</code> file and restart <code>npm run dev</code>.
       </p>
-      <p style={{ color: "#64748b", fontSize: 11, margin: 0 }}>
+      <p style={{ color: "#374151", fontSize: 11, margin: 0 }}>
         Or enter it temporarily here (not saved permanently):
       </p>
       <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
@@ -481,12 +491,12 @@ function ApiKeyBanner({ onSave }) {
           style={{
             flex: 1, padding: "7px 12px", borderRadius: 6,
             background: "rgba(0,0,0,0.4)", border: "1px solid rgba(251,191,36,0.3)",
-            color: "#e2e8f0", fontSize: 13, fontFamily: "monospace"
+            color: "#1f2937", fontSize: 13, fontFamily: "monospace"
           }}
         />
         <button onClick={() => key && onSave(key)} style={{
           padding: "7px 14px", borderRadius: 6, border: "none",
-          background: "#92400e", color: "#fde68a", cursor: "pointer", fontSize: 12
+          background: "#dc2626", color: "#fde68a", cursor: "pointer", fontSize: 12
         }}>
           Use Key
         </button>
@@ -502,7 +512,7 @@ export default function App() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hello! I'm the **ACity RAG Assistant** powered by Groq + LLaMA3-70B.\n\nI can answer questions about:\n• 🗳️ Ghana Election Results (1992–2024)\n• 💰 Ghana 2025 Budget Statement\n\nTry: *\"Who won the 2024 Ghana election?\"* or *\"What is Ghana's education budget for 2025?\"*",
+      content: "Hello! I'm the **ACity RAG Assistant** !\n\nI can answer questions about:\n• 🗳️ Ghana Election Results (1992–2024)\n• 💰 Ghana 2025 Budget Statement\n\nTry: *\"Who won the 2024 Ghana election?\"* or *\"What is Ghana's education budget for 2025?\"*",
       chunks: [], id: "sys_0"
     }
   ]);
@@ -608,14 +618,14 @@ export default function App() {
     return content.split('\n').map((line, i) => {
       if (!line) return <br key={i} />;
       if (line.startsWith('**') && line.endsWith('**'))
-        return <strong key={i} style={{ color: "#4ade80", display: "block" }}>{line.slice(2, -2)}</strong>;
+        return <strong key={i} style={{ color: "#ef4444", display: "block" }}>{line.slice(2, -2)}</strong>;
       if (line.startsWith('• '))
-        return <div key={i} style={{ paddingLeft: 12, color: "#cbd5e1", marginBottom: 2 }}>• {line.slice(2)}</div>;
+        return <div key={i} style={{ paddingLeft: 12, color: "#374151", marginBottom: 2 }}>• {line.slice(2)}</div>;
       // inline bold
       const parts = line.split(/\*\*(.*?)\*\*/g);
       return (
         <p key={i} style={{ margin: "3px 0" }}>
-          {parts.map((p, j) => j % 2 === 1 ? <strong key={j} style={{ color: "#e2e8f0" }}>{p}</strong> : p)}
+          {parts.map((p, j) => j % 2 === 1 ? <strong key={j} style={{ color: "#1f2937" }}>{p}</strong> : p)}
         </p>
       );
     });
@@ -624,53 +634,98 @@ export default function App() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "linear-gradient(160deg, #020617 0%, #071020 60%, #020617 100%)",
+      background: "linear-gradient(135deg, #ffffff 0%, #fef2f2 25%, #f9fafb 50%, #fef2f2 75%, #ffffff 100%)",
       fontFamily: "'IBM Plex Mono', 'Courier New', monospace",
-      color: "#e2e8f0"
+      color: "#1f2937",
+      position: "relative"
     }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
         @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
         @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+        @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 2px; }
-        a { color: #4ade80; }
-        code { background: rgba(74,222,128,0.1); padding: 1px 5px; border-radius: 3px; font-size: 12px; color: #4ade80; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #ef4444, #dc2626);
+          border-radius: 3px;
+          box-shadow: inset 0 0 5px rgba(239,68,68,0.3);
+        }
+        ::-webkit-scrollbar-track { background: rgba(239,68,68,0.1); }
+        a { color: #ef4444; text-decoration: none; transition: all 0.2s; }
+        a:hover { color: #dc2626; text-shadow: 0 0 8px rgba(239,68,68,0.3); }
+        code {
+          background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(239,68,68,0.05));
+          padding: 2px 6px; border-radius: 4px; font-size: 12px; color: #dc2626;
+          border: 1px solid rgba(239,68,68,0.2);
+        }
+        .glass-effect {
+          backdrop-filter: blur(16px);
+          background: rgba(255,255,255,0.85);
+          border: 1px solid rgba(239,68,68,0.1);
+          box-shadow: 0 8px 32px rgba(239,68,68,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+        .dark-accent {
+          background: linear-gradient(135deg, #1f2937, #374151);
+          color: #f9fafb;
+        }
+        .red-glow {
+          box-shadow: 0 0 20px rgba(239,68,68,0.2), 0 0 40px rgba(239,68,68,0.1);
+        }
       `}</style>
+      
 
       {/* ── HEADER ── */}
       <header style={{
-        borderBottom: "1px solid rgba(74,222,128,0.12)",
-        padding: "11px 20px",
+        borderBottom: "1px solid rgba(239,68,68,0.15)",
+        padding: "16px 24px",
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        background: "rgba(2,6,23,0.92)", backdropFilter: "blur(12px)",
-        position: "sticky", top: 0, zIndex: 100
+        background: "rgba(255,255,255,0.95)",
+        backdropFilter: "blur(20px)",
+        position: "sticky", top: 0, zIndex: 100,
+        boxShadow: "0 4px 20px rgba(239,68,68,0.08)",
+        borderRadius: "0 0 16px 16px"
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <div style={{
-            width: 34, height: 34, borderRadius: 8,
-            background: "linear-gradient(135deg, #166534, #15803d)",
-            display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17
+            width: 40, height: 40, borderRadius: 12,
+            background: "linear-gradient(135deg, #ef4444, #dc2626, #b91c1c)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 18, boxShadow: "0 4px 12px rgba(239,68,68,0.3)",
+            animation: "pulse 3s infinite"
           }}>🎓</div>
           <div>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#f1f5f9", fontFamily: "'IBM Plex Sans', sans-serif" }}>
+            <div style={{
+              fontSize: 16, fontWeight: 600, color: "#1f2937",
+              fontFamily: "'IBM Plex Sans', sans-serif",
+              textShadow: "0 1px 2px rgba(0,0,0,0.1)"
+            }}>
               ACity RAG Assistant
             </div>
-            <div style={{ fontSize: 10, color: "#4ade80", letterSpacing: 0.5 }}>
+            <div style={{
+              fontSize: 11, color: "#ef4444", letterSpacing: 0.8,
+              fontWeight: 500, textTransform: "uppercase",
+              opacity: 0.9
+            }}>
               Groq · LLaMA3-70B · Manual TF-IDF · Hybrid Retrieval
             </div>
           </div>
         </div>
-        <nav style={{ display: "flex", gap: 5 }}>
+        <nav style={{ display: "flex", gap: 6 }}>
           {["chat", "logs", "about"].map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)} style={{
-              padding: "5px 13px", borderRadius: 6, border: "1px solid",
-              borderColor: activeTab === tab ? "#4ade80" : "rgba(74,222,128,0.15)",
-              background: activeTab === tab ? "rgba(74,222,128,0.1)" : "transparent",
-              color: activeTab === tab ? "#4ade80" : "#475569",
-              fontSize: 10, cursor: "pointer", textTransform: "uppercase", letterSpacing: 1.2,
-              fontFamily: "monospace"
+              padding: "8px 16px", borderRadius: 10, border: "2px solid",
+              borderColor: activeTab === tab ? "#ef4444" : "rgba(239,68,68,0.2)",
+              background: activeTab === tab
+                ? "linear-gradient(135deg, #ef4444, #dc2626)"
+                : "rgba(255,255,255,0.8)",
+              color: activeTab === tab ? "#ffffff" : "#6b7280",
+              fontSize: 11, cursor: "pointer", textTransform: "uppercase", letterSpacing: 1.5,
+              fontFamily: "monospace", fontWeight: 500,
+              transition: "all 0.3s ease",
+              boxShadow: activeTab === tab ? "0 4px 12px rgba(239,68,68,0.3)" : "none",
+              transform: activeTab === tab ? "translateY(-1px)" : "none"
             }}>{tab}</button>
           ))}
         </nav>
@@ -682,34 +737,77 @@ export default function App() {
 
           {/* Sidebar */}
           <aside style={{
-            width: 215, borderRight: "1px solid rgba(74,222,128,0.08)",
-            padding: "14px 12px", overflowY: "auto",
-            display: "flex", flexDirection: "column", gap: 6,
-            background: "rgba(2,6,23,0.6)"
+            width: 240, borderRight: "1px solid rgba(239,68,68,0.12)",
+            padding: "20px 16px", overflowY: "auto",
+            display: "flex", flexDirection: "column", gap: 8,
+            background: "linear-gradient(180deg, rgba(31,41,55,0.05), rgba(239,68,68,0.02))",
+            backdropFilter: "blur(10px)",
+            borderRadius: "0 16px 16px 0",
+            boxShadow: "inset 0 0 20px rgba(239,68,68,0.05)"
           }}>
-            <div style={{ fontSize: 9, color: "#4ade80", textTransform: "uppercase", letterSpacing: 2, marginBottom: 2 }}>
+            <div style={{
+              fontSize: 10, color: "#ef4444", textTransform: "uppercase",
+              letterSpacing: 2.5, marginBottom: 4, fontWeight: 600,
+              textAlign: "center", padding: "8px 0",
+              background: "linear-gradient(90deg, transparent, rgba(239,68,68,0.1), transparent)",
+              borderRadius: 8
+            }}>
               Sample Queries
             </div>
             {SAMPLE_QUERIES.map((q, i) => (
               <button key={i} onClick={() => { setInput(q); inputRef.current?.focus(); }} style={{
-                textAlign: "left", padding: "7px 9px", borderRadius: 6,
-                background: "rgba(74,222,128,0.03)", border: "1px solid rgba(74,222,128,0.08)",
-                color: "#64748b", fontSize: 11, cursor: "pointer", lineHeight: 1.4,
-                transition: "all 0.15s"
-              }} onMouseEnter={e => { e.target.style.color = "#94a3b8"; e.target.style.borderColor = "rgba(74,222,128,0.2)"; }}
-                onMouseLeave={e => { e.target.style.color = "#64748b"; e.target.style.borderColor = "rgba(74,222,128,0.08)"; }}>
+                textAlign: "left", padding: "10px 12px", borderRadius: 10,
+                background: "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(249,250,251,0.9))",
+                border: "1px solid rgba(239,68,68,0.15)",
+                color: "#374151", fontSize: 12, cursor: "pointer", lineHeight: 1.4,
+                transition: "all 0.3s ease",
+                boxShadow: "0 2px 8px rgba(239,68,68,0.08)",
+                position: "relative", overflow: "hidden"
+              }}
+              onMouseEnter={e => {
+                e.target.style.color = "#1f2937";
+                e.target.style.borderColor = "rgba(239,68,68,0.3)";
+                e.target.style.transform = "translateY(-2px)";
+                e.target.style.boxShadow = "0 4px 16px rgba(239,68,68,0.15)";
+                e.target.style.background = "linear-gradient(135deg, rgba(239,68,68,0.05), rgba(239,68,68,0.1))";
+              }}
+              onMouseLeave={e => {
+                e.target.style.color = "#374151";
+                e.target.style.borderColor = "rgba(239,68,68,0.15)";
+                e.target.style.transform = "none";
+                e.target.style.boxShadow = "0 2px 8px rgba(239,68,68,0.08)";
+                e.target.style.background = "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(249,250,251,0.9))";
+              }}>
                 {q}
               </button>
             ))}
-            <div style={{ marginTop: 14, fontSize: 10, color: "#334155", lineHeight: 1.8 }}>
-              <div style={{ color: "#4ade80", marginBottom: 4, fontSize: 9, letterSpacing: 1 }}>KNOWLEDGE BASE</div>
-              <div>📊 {KNOWLEDGE_BASE.filter(d => d.category === "election").length} election chunks</div>
-              <div>💰 {KNOWLEDGE_BASE.filter(d => d.category === "budget").length} budget chunks</div>
-              <div>🔧 Vocab: {embeddingPipeline.vocabulary.size} terms</div>
-              <div style={{ marginTop: 8, color: "#4ade80", fontSize: 9, letterSpacing: 1 }}>MODEL</div>
-              <div>🤖 {GROQ_MODEL}</div>
-              <div style={{ color: hasKey ? "#4ade80" : "#f87171" }}>
-                🔑 Key: {hasKey ? "✓ set" : "✗ missing"}
+            <div style={{
+              marginTop: 20, fontSize: 11, color: "#374151", lineHeight: 1.8,
+              padding: "16px", borderRadius: 12,
+              background: "linear-gradient(135deg, rgba(31,41,55,0.05), rgba(239,68,68,0.03))",
+              border: "1px solid rgba(239,68,68,0.1)",
+              boxShadow: "0 4px 12px rgba(239,68,68,0.08)"
+            }}>
+              <div style={{
+                color: "#ef4444", marginBottom: 6, fontSize: 10, letterSpacing: 1.5,
+                textTransform: "uppercase", fontWeight: 600, textAlign: "center",
+                padding: "4px 8px", background: "rgba(239,68,68,0.1)", borderRadius: 6
+              }}>📊 Knowledge Base</div>
+              <div style={{ marginBottom: 4 }}>📊 <strong>{KNOWLEDGE_BASE.filter(d => d.category === "election").length}</strong> election chunks</div>
+              <div style={{ marginBottom: 4 }}>💰 <strong>{KNOWLEDGE_BASE.filter(d => d.category === "budget").length}</strong> budget chunks</div>
+              <div style={{ marginBottom: 8 }}>🔧 <strong>{embeddingPipeline.vocabulary.size}</strong> terms indexed</div>
+              <div style={{
+                color: "#ef4444", fontSize: 10, letterSpacing: 1.5,
+                textTransform: "uppercase", fontWeight: 600, textAlign: "center",
+                marginTop: 12, padding: "4px 8px", background: "rgba(239,68,68,0.1)", borderRadius: 6
+              }}>🤖 Model Status</div>
+              <div style={{ marginTop: 4, fontSize: 10 }}>🧠 {GROQ_MODEL}</div>
+              <div style={{
+                marginTop: 4, fontSize: 10,
+                color: hasKey ? "#ef4444" : "#f87171",
+                fontWeight: hasKey ? 500 : 400
+              }}>
+                🔑 {hasKey ? "✓ Connected" : "✗ API Key Needed"}
               </div>
             </div>
           </aside>
@@ -729,14 +827,20 @@ export default function App() {
                     marginBottom: 18, animation: "fadeUp 0.3s ease"
                   }}>
                     <div style={{
-                      maxWidth: "80%",
+                      maxWidth: "75%",
                       background: isUser
-                        ? "linear-gradient(135deg, #14532d, #166534)"
-                        : "rgba(10,18,40,0.97)",
-                      border: isUser ? "none" : "1px solid rgba(74,222,128,0.12)",
-                      borderRadius: isUser ? "16px 16px 3px 16px" : "3px 16px 16px 16px",
-                      padding: "11px 15px",
-                      fontSize: 13, lineHeight: 1.75, color: "#e2e8f0"
+                        ? "linear-gradient(135deg, #ef4444, #dc2626, #b91c1c)"
+                        : "linear-gradient(135deg, rgba(255,255,255,0.95), rgba(249,250,251,0.9))",
+                      border: isUser ? "none" : "1px solid rgba(239,68,68,0.15)",
+                      borderRadius: isUser ? "18px 18px 4px 18px" : "4px 18px 18px 18px",
+                      padding: "14px 18px",
+                      fontSize: 14, lineHeight: 1.6, color: isUser ? "#ffffff" : "#1f2937",
+                      boxShadow: isUser
+                        ? "0 6px 20px rgba(239,68,68,0.3), 0 2px 8px rgba(239,68,68,0.2)"
+                        : "0 4px 16px rgba(239,68,68,0.08), 0 1px 4px rgba(0,0,0,0.05)",
+                      backdropFilter: "blur(8px)",
+                      position: "relative",
+                      animation: "fadeUp 0.4s ease"
                     }}>
                       {renderContent(msg.content)}
                     </div>
@@ -753,7 +857,7 @@ export default function App() {
                             fontSize: 10, color: "#334155", fontFamily: "monospace",
                             padding: "5px 10px", background: "rgba(0,0,0,0.25)", borderRadius: 5, marginTop: 4
                           }}>
-                            <span style={{ color: "#4ade80" }}>pipeline</span>
+                            <span style={{ color: "#ef4444" }}>pipeline</span>
                             {" · "}retrieved: {msg.pipelineLog.resultsCount}
                             {" · "}top: {msg.pipelineLog.topScore?.toFixed(3)}
                             {" · "}doc: {msg.pipelineLog.topDocId}
@@ -769,7 +873,7 @@ export default function App() {
                                 fontSize: 10, padding: "2px 8px", borderRadius: 4, cursor: "pointer",
                                 background: r === "good" ? "rgba(74,222,128,0.08)" : "rgba(239,68,68,0.08)",
                                 border: `1px solid ${r === "good" ? "rgba(74,222,128,0.25)" : "rgba(239,68,68,0.25)"}`,
-                                color: r === "good" ? "#4ade80" : "#f87171"
+                                color: r === "good" ? "#ef4444" : "#f87171"
                               }}>
                                 {r === "good" ? "👍 Good" : "👎 Poor"}
                               </button>
@@ -777,7 +881,7 @@ export default function App() {
                           </div>
                         ) : (
                           <div style={{
-                            fontSize: 10, color: msg.feedback === "good" ? "#4ade80" : "#f87171",
+                            fontSize: 10, color: msg.feedback === "good" ? "#ef4444" : "#f87171",
                             marginTop: 4, fontFamily: "monospace"
                           }}>
                             ✓ Feedback recorded — doc weights updated
@@ -809,10 +913,12 @@ export default function App() {
               background: "rgba(2,6,23,0.9)"
             }}>
               <div style={{
-                display: "flex", gap: 8, alignItems: "flex-end",
-                background: "rgba(10,18,40,0.9)",
-                border: "1px solid rgba(74,222,128,0.18)",
-                borderRadius: 11, padding: "8px 10px 8px 14px"
+                display: "flex", gap: 10, alignItems: "flex-end",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.95), rgba(249,250,251,0.9))",
+                border: "2px solid rgba(239,68,68,0.2)",
+                borderRadius: 16, padding: "12px 16px 12px 20px",
+                boxShadow: "0 6px 20px rgba(239,68,68,0.1), inset 0 1px 0 rgba(255,255,255,0.8)",
+                backdropFilter: "blur(12px)"
               }}>
                 <textarea
                   ref={inputRef}
@@ -821,21 +927,32 @@ export default function App() {
                   onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } }}
                   placeholder="Ask about Ghana elections or 2025 budget..."
                   style={{
-                    flex: 1, background: "none", border: "none", color: "#e2e8f0",
-                    fontSize: 13, resize: "none", minHeight: 24, maxHeight: 100,
+                    flex: 1, background: "none", border: "none", color: "#1f2937",
+                    fontSize: 14, resize: "none", minHeight: 28, maxHeight: 120,
                     fontFamily: "'IBM Plex Sans', sans-serif", lineHeight: 1.5, outline: "none"
                   }}
                   rows={1}
                 />
                 <button onClick={sendMessage} disabled={loading || !input.trim()} style={{
-                  width: 34, height: 34, borderRadius: 7, border: "none", flexShrink: 0,
-                  background: loading || !input.trim() ? "rgba(74,222,128,0.15)" : "#166534",
+                  width: 40, height: 40, borderRadius: 12, border: "none", flexShrink: 0,
+                  background: loading || !input.trim()
+                    ? "linear-gradient(135deg, rgba(239,68,68,0.3), rgba(156,163,175,0.3))"
+                    : "linear-gradient(135deg, #ef4444, #dc2626, #b91c1c)",
                   color: "#fff", cursor: loading || !input.trim() ? "not-allowed" : "pointer",
-                  fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center"
+                  fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center",
+                  boxShadow: loading || !input.trim() ? "none" : "0 4px 12px rgba(239,68,68,0.3)",
+                  transition: "all 0.3s ease",
+                  transform: loading || !input.trim() ? "none" : "translateY(-1px)"
                 }}>➤</button>
               </div>
-              <div style={{ fontSize: 9, color: "#1e3a5f", marginTop: 5, textAlign: "center", letterSpacing: 0.5 }}>
-                TF-IDF · Cosine Similarity · Hybrid Search · Query Expansion · Feedback Loop · Groq LLaMA3-70B
+              <div style={{
+                fontSize: 10, color: "#ef4444", marginTop: 8, textAlign: "center",
+                letterSpacing: 1, fontWeight: 500, textTransform: "uppercase",
+                opacity: 0.8, padding: "6px 0",
+                background: "linear-gradient(90deg, transparent, rgba(239,68,68,0.1), transparent)",
+                borderRadius: 8
+              }}>
+                ⚡ TF-IDF · Cosine Similarity · Hybrid Search · Query Expansion · Feedback Loop · Groq LLaMA3-70B ⚡
               </div>
             </div>
           </main>
@@ -845,7 +962,7 @@ export default function App() {
       {/* ── LOGS TAB ── */}
       {activeTab === "logs" && (
         <div style={{ padding: 24, maxWidth: 860, margin: "0 auto" }}>
-          <h2 style={{ color: "#4ade80", fontFamily: "'IBM Plex Sans'", marginBottom: 4, fontSize: 18 }}>
+          <h2 style={{ color: "#ef4444", fontFamily: "'IBM Plex Sans'", marginBottom: 4, fontSize: 18 }}>
             Pipeline Logs
           </h2>
           <p style={{ color: "#475569", fontSize: 12, marginBottom: 20 }}>
@@ -853,8 +970,11 @@ export default function App() {
           </p>
 
           <div style={{
-            background: "rgba(10,18,40,0.9)", border: "1px solid rgba(74,222,128,0.15)",
-            borderRadius: 10, padding: 18, marginBottom: 16
+            background: "linear-gradient(135deg, rgba(255,255,255,0.95), rgba(249,250,251,0.9))",
+            border: "2px solid rgba(239,68,68,0.15)",
+            borderRadius: 16, padding: 20, marginBottom: 18,
+            boxShadow: "0 8px 24px rgba(239,68,68,0.1), 0 2px 8px rgba(0,0,0,0.05)",
+            backdropFilter: "blur(12px)"
           }}>
             <h3 style={{ color: "#fbbf24", fontSize: 13, marginBottom: 12, fontFamily: "monospace" }}>
               Pipeline Flow
@@ -865,13 +985,13 @@ export default function App() {
                 ["↓ Query Expansion (domain synonyms)", "#fbbf24"],
                 [`↓ TF-IDF Embed (vocab: ${embeddingPipeline.vocabulary.size} terms)`, "#94a3b8"],
                 [`↓ Cosine Similarity → ${KNOWLEDGE_BASE.length} chunks`, "#94a3b8"],
-                ["↓ Keyword Score (term overlap)", "#4ade80"],
-                ["↓ Hybrid = 0.7×vector + 0.3×keyword", "#4ade80"],
+                ["↓ Keyword Score (term overlap)", "#ef4444"],
+                ["↓ Hybrid = 0.7×vector + 0.3×keyword", "#ef4444"],
                 ["↓ Feedback Boost (session weights)", "#a78bfa"],
                 ["↓ Top-4 Context Selection", "#94a3b8"],
                 ["↓ Prompt + Hallucination Guards", "#f87171"],
                 ["↓ Groq API (LLaMA3-70B)", "#94a3b8"],
-                ["↓ Response + Source Citations", "#4ade80"],
+                ["↓ Response + Source Citations", "#ef4444"],
               ].map(([line, color], i) => (
                 <div key={i} style={{ color }}>{line}</div>
               ))}
@@ -879,10 +999,13 @@ export default function App() {
           </div>
 
           <div style={{
-            background: "rgba(10,18,40,0.9)", border: "1px solid rgba(74,222,128,0.15)",
-            borderRadius: 10, padding: 18
+            background: "linear-gradient(135deg, rgba(255,255,255,0.95), rgba(249,250,251,0.9))",
+            border: "2px solid rgba(239,68,68,0.15)",
+            borderRadius: 16, padding: 20,
+            boxShadow: "0 8px 24px rgba(239,68,68,0.1), 0 2px 8px rgba(0,0,0,0.05)",
+            backdropFilter: "blur(12px)"
           }}>
-            <h3 style={{ color: "#4ade80", fontSize: 13, marginBottom: 12, fontFamily: "monospace" }}>
+            <h3 style={{ color: "#ef4444", fontSize: 13, marginBottom: 12, fontFamily: "monospace" }}>
               Query Log ({hybridRetriever.logs.length} queries this session)
             </h3>
             {hybridRetriever.logs.length === 0 ? (
@@ -895,7 +1018,7 @@ export default function App() {
                 <div style={{ color: "#fbbf24" }}>#{i + 1} "{log.query}"</div>
                 <div style={{ color: "#475569", marginTop: 2 }}>expanded → "{log.expandedQuery.slice(0, 80)}…"</div>
                 <div style={{ display: "flex", gap: 12, marginTop: 3 }}>
-                  <span style={{ color: "#4ade80" }}>retrieved: {log.resultsCount}</span>
+                  <span style={{ color: "#ef4444" }}>retrieved: {log.resultsCount}</span>
                   <span style={{ color: "#a78bfa" }}>top_score: {log.topScore?.toFixed(4)}</span>
                   <span style={{ color: "#64748b" }}>top_doc: {log.topDocId}</span>
                   <span style={{ color: "#334155" }}>{new Date(log.timestamp).toLocaleTimeString()}</span>
@@ -915,7 +1038,7 @@ export default function App() {
               {feedbackMemory.feedbackLog.map((f, i) => (
                 <div key={i} style={{
                   fontSize: 11, fontFamily: "monospace", marginBottom: 6,
-                  color: f.rating === "good" ? "#4ade80" : "#f87171"
+                  color: f.rating === "good" ? "#ef4444" : "#f87171"
                 }}>
                   {f.rating === "good" ? "👍" : "👎"} [{f.docIds.join(", ")}] → weight ×{f.rating === "good" ? "1.2" : "0.85"}
                 </div>
@@ -928,20 +1051,20 @@ export default function App() {
       {/* ── ABOUT TAB ── */}
       {activeTab === "about" && (
         <div style={{ padding: 24, maxWidth: 800, margin: "0 auto" }}>
-          <h2 style={{ color: "#4ade80", fontFamily: "'IBM Plex Sans'", marginBottom: 4, fontSize: 18 }}>
+          <h2 style={{ color: "#ef4444", fontFamily: "'IBM Plex Sans'", marginBottom: 4, fontSize: 18 }}>
             About This System
           </h2>
           <p style={{ color: "#475569", fontSize: 12, marginBottom: 20 }}>
             Academic City University College · AI Systems Coursework · Manual RAG Implementation
           </p>
           {[
-            { title: "LLM: Groq + LLaMA3-70B (Free)", color: "#4ade80",
+            { title: "LLM: Groq + LLaMA3-70B (Free)", color: "#ef4444",
               content: "Generation is powered by Groq's free API using Meta's LLaMA3-70B model. Groq's LPU hardware makes it extremely fast — responses typically arrive in under 2 seconds. Get a free key at console.groq.com." },
             { title: "Part A: Chunking Strategy", color: "#fbbf24",
               content: "27 semantic chunks from two datasets. Chunk size: 200–250 words. Strategy: topic-boundary chunking (one theme per chunk, zero overlap). Justified by TF-IDF performance tests: 50w chunks had 0.421 top scores vs 0.587 for 200w chunks." },
             { title: "Part B: Custom Embedding + Retrieval", color: "#a78bfa",
               content: "Manual TF-IDF implementation from scratch. Vocabulary built from corpus. IDF = log((N+1)/(df+1))+1. Vectors stored as Float32Array. Cosine similarity for scoring. No sklearn, no transformers, no NumPy." },
-            { title: "Part B Extension: Hybrid Search", color: "#4ade80",
+            { title: "Part B Extension: Hybrid Search", color: "#ef4444",
               content: "Hybrid score = 0.7 × TF-IDF cosine + 0.3 × keyword overlap ratio. Query expansion injects domain synonyms before embedding. This reduced false positives by 31% vs vector-only retrieval in testing." },
             { title: "Part C: Prompt Engineering", color: "#f87171",
               content: "Template injects: retrieved context with source citations and scores, conversation history (last 4 turns), explicit hallucination control rules. Testing showed 79% fewer unsupported claims with guards vs without." },
