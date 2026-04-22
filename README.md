@@ -1,10 +1,10 @@
 # 🎓 ACity RAG Assistant
 
-**Academic City University College — AI Systems Coursework**
+**Academic City University — Introduction to AI Project-Exam**
 
 A manually-implemented Retrieval-Augmented Generation (RAG) system for querying Ghana Election Results and the 2025 Budget Statement.
 
-**Live Demo:** *(add your Vercel URL here after deployment)*
+**Live Demo:** *https://ai-10022200095.vercel.app/*
 **GitHub:** *(add your GitHub URL here)*
 
 ---
@@ -19,14 +19,14 @@ A manually-implemented Retrieval-Augmented Generation (RAG) system for querying 
 ### 2. Set Up Your Environment
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/acicity-rag.git
+git clone https://github.com/WesTurkson/ai_10022200095.git
 cd acicity-rag
 
 # Install dependencies
 npm install
 
 # Set your API key
-cp .env.example .env
+cp .env
 # Open .env and replace: VITE_GROQ_API_KEY=your_actual_key_here
 ```
 
@@ -101,4 +101,4 @@ User Query
 
 ---
 
-*Academic City University College | April 2026*
+*Academic City University | April 2026*
