@@ -512,7 +512,7 @@ export default function App() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hello! I'm the **ACity RAG Assistant** !\n\nI can answer questions about:\n• 🗳️ Ghana Election Results (1992–2024)\n• 💰 Ghana 2025 Budget Statement\n\nTry: *\"Who won the 2024 Ghana election?\"* or *\"What is Ghana's education budget for 2025?\"*",
+      content: "Hello! I'm the **ACity RAG Assistant**!\n\nI can answer questions about:\n• 🗳️ Ghana Election Results (1992–2024)\n• 💰 Ghana 2025 Budget Statement\n\nTry: *\"Who won the 2024 Ghana election?\"* or *\"What is Ghana's education budget for 2025?\"*",
       chunks: [], id: "sys_0"
     }
   ]);
@@ -708,7 +708,7 @@ export default function App() {
               fontWeight: 500, textTransform: "uppercase",
               opacity: 0.9
             }}>
-              Groq · LLaMA3-70B · Manual TF-IDF · Hybrid Retrieval
+              Powered by Groq 
             </div>
           </div>
         </div>
