@@ -1,4 +1,4 @@
-# 🎓 ACity RAG Assistant
+#  ACity RAG Assistant
 
 **Academic City University — Introduction to AI Project-Exam**
 
@@ -9,7 +9,7 @@ A manually-implemented Retrieval-Augmented Generation (RAG) system for querying 
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Get a FREE Groq API Key
 - Go to [console.groq.com](https://console.groq.com)
@@ -38,7 +38,7 @@ npm run dev
 
 ---
 
-## 📦 Deploy to Vercel
+##  Deploy to Vercel
 
 ```bash
 # Push to GitHub first
@@ -54,7 +54,7 @@ Then:
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 User Query
@@ -70,7 +70,7 @@ User Query
 
 ---
 
-## 📋 Components
+##  Components
 
 | File | Purpose |
 |------|---------|
@@ -80,7 +80,7 @@ User Query
 
 ---
 
-## ✅ Constraints Satisfied
+##  Constraints Satisfied
 
 - ❌ No LangChain
 - ❌ No LlamaIndex  
@@ -94,7 +94,7 @@ User Query
 
 ---
 
-## 📊 Datasets
+##  Datasets
 
 - `Ghana_Election_Result.csv` — presidential results 1992–2024
 - `2025-Budget-Statement.pdf` — Ghana fiscal year 2025 budget
