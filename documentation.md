@@ -258,8 +258,7 @@ The RAG system outperforms pure LLM generation on every measured metric for doma
 ---
 
 # Part F - Architecture
-
-
+![architecture_diagram](architecture_diagram.png)
 ## F.1 Data Flow (System Pipeline)
 
 The architecture follows a linear, 7-stage pipeline:
@@ -347,4 +346,4 @@ weight = 0.85
 
 ---
 
-**Academic City University |  April 2026**
+**Academic City University College |  April 2026**
