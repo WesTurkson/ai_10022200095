@@ -5,7 +5,7 @@
 A manually-implemented Retrieval-Augmented Generation (RAG) system for querying Ghana Election Results and the 2025 Budget Statement.
 
 **Live Demo:** *https://ai-10022200095.vercel.app/*
-
+**Video Explanation of App:** *https://drive.google.com/drive/folders/1S0idYCBlq9bQmYCpZeNimvQlrq8V3Ks1?usp=drive_link*
 *Refer to documentation.md file for detailed report documentation of the entire project*
 
 ---
