@@ -6,6 +6,7 @@ A manually-implemented Retrieval-Augmented Generation (RAG) system for querying 
 
 **Live Demo:** *https://ai-10022200095.vercel.app/*
 **GitHub:** *(add your GitHub URL here)*
+Refer to documentation.md file for detailed report documentation of the entire project
 
 ---
 
